@@ -1,7 +1,7 @@
 const db = require('../../db/models')
 
 module.exports.getAlumnos = async (__, res) => {
-  const alumnos = db.Alumno.findAll()
+  const alumnos = await db.Alumno.findAll()
 
   if (!alumnos) return res.status(404).send('No hay comites')
 
