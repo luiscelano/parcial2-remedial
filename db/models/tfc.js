@@ -14,7 +14,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Tfc.init({
-    tema: DataTypes.STRING
+    numeroOrden:{
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    tema:{
+      type: DataTypes.STRING(50),
+      allowNull: false
+    },
+    fechaInicio:{
+      type: DataTypes.DATE,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Tfc',
