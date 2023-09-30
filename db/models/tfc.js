@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Tfc extends Model {
     /**
@@ -13,26 +11,29 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Tfc.init({
-    numeroOrden:{
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+  Tfc.init(
+    {
+      numeroOrden: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      tema: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+      },
+      fechaInicio: {
+        type: DataTypes.DATE,
+        allowNull: false
+      }
     },
-    tema:{
-      type: DataTypes.STRING(50),
-      allowNull: false
-    },
-    fechaInicio:{
-      type: DataTypes.DATE,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'Tfc',
+      freezeTableName: true,
+      tableName: 'tfc',
+      underscored: true
     }
-  }, {
-    sequelize,
-    modelName: 'Tfc',
-    freezeTableName: true,
-    tableName: 'Tfc',
-    underscored:true
-  });
-  return Tfc;
-};
+  )
+  return Tfc
+}

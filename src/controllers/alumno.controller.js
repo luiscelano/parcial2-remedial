@@ -25,12 +25,16 @@ module.exports.createAlumno = async (req, res) => {
 
 //Actualizar alumno
 module.exports.updateAlumno = async (req, res) => {
-  const alumno = await db.Alumno.findByPk(req.params.idAlumno)
+  try {
+    const alumno = await db.Alumno.findByPk(req.params.idAlumno)
 
-  if (!alumno) return res.status(404).send('No hay Alumno')
-
-  await alumno.save()
-  return res.status(200).json({ alumnos: alumno })
+    if (!alumno) return res.status(404).send('Alumno no encontrado')
+    await alumno.update({ ...req.body })
+    await alumno.save()
+    return res.status(200).json({ alumno })
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
 }
 
 //Encontrar alumno por ID
