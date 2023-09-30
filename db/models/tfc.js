@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Tfc',
+    freezeTableName: true,
+    tableName: 'Tfc',
+    underscored:true
   });
   return Tfc;
 };
