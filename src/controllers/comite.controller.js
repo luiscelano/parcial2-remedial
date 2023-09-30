@@ -29,8 +29,9 @@ module.exports.updateComite = async (req, res) => {
 
   if (!comite) return res.status(404).send('No hay Comite')
 
+  await comite.update({ ...req.body })
   await comite.save()
-  return res.status(200).json({ comite: comite })
+  return res.status(200).json({ comite })
 }
 
 //Encontrar comite por id

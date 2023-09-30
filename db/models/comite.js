@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         key: 'no_serie',
         primaryKey: true,
         unique: true,
-        allowNull: false
+        allowNull: false,
+        type: DataTypes.INTEGER
       },
       lugar: DataTypes.STRING,
       fechaFormacion: {

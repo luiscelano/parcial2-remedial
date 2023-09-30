@@ -29,6 +29,7 @@ module.exports.updateProfesor = async (req, res) => {
 
   if (!profesor) return res.status(404).send('No hay Profesor')
 
+  await profesor.update({ ...req.body })
   await profesor.save()
   return res.status(200).json({ profesor: profesor })
 }
