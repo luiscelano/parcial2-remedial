@@ -1,15 +1,15 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "sa",
+    "password": "Admin12345!",
+    "database": "db_cursos",
+    "host": "localhost",
+    "dialect": "mssql"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "db_cursos",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

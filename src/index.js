@@ -1,9 +1,8 @@
 import express from 'express'
 import http from 'http'
-// import { initAPI } from 'api'
 import cors from 'cors'
-
 import routes from 'routes'
+import db from '../db/models'
 ;(async () => {
   const app = express()
 
@@ -13,8 +12,6 @@ import routes from 'routes'
   const server = http.createServer(app)
 
   app.use(cors())
-  // app.use(bodyParser.urlencoded({ extended: false }))
-  // app.use(bodyParser.json())
   app.use(express.json())
   app.use(routes)
   //   initAPI(app)
@@ -27,7 +24,9 @@ import routes from 'routes'
     res.status(200).send(data)
   })
 
-  server.listen(PORT, () => {
-    console.log(`Server running on http://${HOST}:${PORT}`)
-  })
+  db.sequelize.sync({ force: false }).then(() =>
+    server.listen(PORT, () => {
+      console.log(`Server running on http://${HOST}:${PORT}`)
+    })
+  )
 })()

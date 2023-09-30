@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Comite extends Model {
     /**
@@ -13,11 +11,31 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Comite.init({
-    lugar: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Comite',
-  });
-  return Comite;
-};
+  Comite.init(
+    {
+      noSerie: {
+        key: 'no_serie',
+        primaryKey: true,
+        unique: true,
+        allowNull: false
+      },
+      lugar: DataTypes.STRING,
+      fechaFormacion: {
+        key: 'fecha_formacion',
+        type: DataTypes.DATE
+      },
+      noIntegrantes: {
+        key: 'no_integrantes',
+        type: DataTypes.INTEGER
+      }
+    },
+    {
+      sequelize,
+      modelName: 'Comite',
+      freezeTableName: true,
+      tableName: 'comite',
+      underscored: true
+    }
+  )
+  return Comite
+}
