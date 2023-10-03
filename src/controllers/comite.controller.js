@@ -1,8 +1,8 @@
-const db = require('../../db/models')
+import { Comite } from '../../db/models'
 
 //Lista completa
-module.exports.getComites = async (__, res) => {
-  const comites = await db.Comite.findAll()
+export async function getComites(__, res) {
+  const comites = await Comite.findAll()
 
   if (!comites) return res.status(404).send('No hay comites')
 
@@ -10,9 +10,9 @@ module.exports.getComites = async (__, res) => {
 }
 
 //Crear comite
-module.exports.createComite = async (req, res) => {
+export async function createComite(req, res) {
   try {
-    const comite = await db.Comite.create(req.body)
+    const comite = await Comite.create(req.body)
 
     if (!comite) throw new Error('no se ha creado ningun comite')
 
@@ -24,8 +24,8 @@ module.exports.createComite = async (req, res) => {
 }
 
 //Actualizar comite
-module.exports.updateComite = async (req, res) => {
-  const comite = await db.Comite.findByPk(req.params.idComite)
+export async function updateComite(req, res) {
+  const comite = await Comite.findByPk(req.params.idComite)
 
   if (!comite) return res.status(404).send('No hay Comite')
 
@@ -35,8 +35,8 @@ module.exports.updateComite = async (req, res) => {
 }
 
 //Encontrar comite por id
-module.exports.findComiteById = async (req, res) => {
-  const comite = await db.Comite.findByPk(req.params.idComite)
+export async function findComiteById(req, res) {
+  const comite = await Comite.findByPk(req.params.idComite)
 
   if (!comite) return res.status(404).send('No hay Comite')
 
@@ -44,9 +44,9 @@ module.exports.findComiteById = async (req, res) => {
 }
 
 //Eliminar comite
-module.exports.deleteComite = async (req, res) => {
+export async function deleteComite(req, res) {
   try {
-    await db.Comite.destroy({
+    await Comite.destroy({
       where: {
         id: req.params.idComite
       }

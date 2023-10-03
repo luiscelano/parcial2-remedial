@@ -3,7 +3,7 @@ import GrupoInvestigacionControllers from 'controllers/grupoinvestigacion.contro
 
 const Router = Express.Router()
 
-Router.get('/', GrupoInvestigacionControllers.getGrupos)
-Router.post('/', GrupoInvestigacionControllers.createGrupo)
+// Router.get('/', GrupoInvestigacionControllers.getGrupos)
+// Router.post('/', GrupoInvestigacionControllers.createGrupo)
 
 export default Router

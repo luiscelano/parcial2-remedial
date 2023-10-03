@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Tfc.hasOne(models.Alumno, { foreignKey: { name: 'tfc_id', allowNull: false } });
+      Tfc.hasOne(models.Alumno, { as: 'alumno' })
     }
   }
   Tfc.init(
@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       numeroOrden: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        unique: true,
+        key: 'numero_orden'
       },
       tema: {
         type: DataTypes.STRING(50),

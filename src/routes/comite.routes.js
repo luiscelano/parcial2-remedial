@@ -1,5 +1,5 @@
 import Express from 'express'
-import ComiteControllers from 'controllers/comite.controller'
+import * as ComiteControllers from 'controllers/comite.controller'
 
 const Router = Express.Router()
 

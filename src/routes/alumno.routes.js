@@ -1,5 +1,5 @@
 import Express from 'express'
-import AlumnoControllers from 'controllers/alumno.controller'
+import * as AlumnoControllers from 'controllers/alumno.controller'
 
 const Router = Express.Router()
 

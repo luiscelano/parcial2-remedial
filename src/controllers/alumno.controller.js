@@ -1,8 +1,8 @@
-const db = require('../../db/models')
+import { Alumno } from '../../db/models'
 
 //Lista completa
-module.exports.getAlumnos = async (__, res) => {
-  const alumnos = await db.Alumno.findAll()
+export async function getAlumnos(__, res) {
+  const alumnos = await Alumno.findAll()
 
   if (!alumnos) return res.status(404).send('No hay alumnos')
 
@@ -10,9 +10,9 @@ module.exports.getAlumnos = async (__, res) => {
 }
 
 //Crear Alumno
-module.exports.createAlumno = async (req, res) => {
+export async function createAlumno(req, res) {
   try {
-    const alumno = await db.Alumno.create(req.body)
+    const alumno = await Alumno.create(req.body)
 
     if (!alumno) throw new Error('no se ha creado ningun alumno')
 
@@ -24,9 +24,9 @@ module.exports.createAlumno = async (req, res) => {
 }
 
 //Actualizar alumno
-module.exports.updateAlumno = async (req, res) => {
+export async function updateAlumno(req, res) {
   try {
-    const alumno = await db.Alumno.findByPk(req.params.idAlumno)
+    const alumno = await Alumno.findByPk(req.params.idAlumno)
 
     if (!alumno) return res.status(404).send('Alumno no encontrado')
     await alumno.update({ ...req.body })
@@ -38,8 +38,8 @@ module.exports.updateAlumno = async (req, res) => {
 }
 
 //Encontrar alumno por ID
-module.exports.findAlumnoById = async (req, res) => {
-  const alumno = await db.Alumno.findByPk(req.params.idAlumno)
+export async function findAlumnoById(req, res) {
+  const alumno = await Alumno.findByPk(req.params.idAlumno)
 
   if (!alumno) return res.status(404).send('No hay Alumno')
 
@@ -47,9 +47,9 @@ module.exports.findAlumnoById = async (req, res) => {
 }
 
 //Eliminar alumno
-module.exports.deleteAlumno = async (req, res) => {
+export async function deleteAlumno(req, res) {
   try {
-    await db.Alumno.destroy({
+    await Alumno.destroy({
       where: {
         id: req.params.idAlumno
       }

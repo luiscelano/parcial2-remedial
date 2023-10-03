@@ -8,14 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Comite.hasMany(models.Profesor, { foreignKey: { name: 'comite_id', allowNull: false } });
+      Comite.belongsToMany(models.Profesor, { as: 'profesores', through: 'ComitesAsignados' })
     }
   }
   Comite.init(
     {
+      comiteId: {
+        key: 'comite_id',
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
       noSerie: {
         key: 'no_serie',
-        primaryKey: true,
         unique: true,
         allowNull: false,
         type: DataTypes.INTEGER
