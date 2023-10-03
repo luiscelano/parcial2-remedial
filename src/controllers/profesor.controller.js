@@ -1,8 +1,8 @@
-const db = require('../../db/models')
+import { Profesor } from '../../db/models'
 
 //Lista completa
-module.exports.getProfesores = async (__, res) => {
-  const profesores = await db.Profesor.findAll()
+export async function getProfesores(__, res) {
+  const profesores = await Profesor.findAll()
 
   if (!profesores) return res.status(404).send('No hay profesores')
 
@@ -10,9 +10,9 @@ module.exports.getProfesores = async (__, res) => {
 }
 
 //Crear profesor
-module.exports.createProfesor = async (req, res) => {
+export async function createProfesor(req, res) {
   try {
-    const profesor = await db.Profesor.create(req.body)
+    const profesor = await Profesor.create(req.body)
 
     if (!profesor) throw new Error('no se ha creado ningun profesor')
 
@@ -24,8 +24,8 @@ module.exports.createProfesor = async (req, res) => {
 }
 
 //Actualizar profesor
-module.exports.updateProfesor = async (req, res) => {
-  const profesor = await db.Profesor.findByPk(req.params.idProfesor)
+export async function updateProfesor(req, res) {
+  const profesor = await Profesor.findByPk(req.params.idProfesor)
 
   if (!profesor) return res.status(404).send('No hay Profesor')
 
@@ -35,8 +35,8 @@ module.exports.updateProfesor = async (req, res) => {
 }
 
 //Encontrar profesor por ID
-module.exports.findProfesorById = async (req, res) => {
-  const profesor = await db.Profesor.findByPk(req.params.idProfesor)
+export async function findProfesorById(req, res) {
+  const profesor = await Profesor.findByPk(req.params.idProfesor)
 
   if (!profesor) return res.status(404).send('No hay Profesor')
 
@@ -44,9 +44,9 @@ module.exports.findProfesorById = async (req, res) => {
 }
 
 //Eliminar profesor
-module.exports.deleteProfesor = async (req, res) => {
+export async function deleteProfesor(req, res) {
   try {
-    await db.Profesor.destroy({
+    await Profesor.destroy({
       where: {
         id: req.params.idProfesor
       }

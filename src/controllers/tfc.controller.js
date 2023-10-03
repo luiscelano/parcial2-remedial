@@ -1,8 +1,8 @@
-const db = require('../../db/models')
+import { Tfc } from '../../db/models'
 
-module.exports.createTfc = async (req, res) => {
+export async function createTfc(req, res) {
   try {
-    const tfc = await db.Tfc.create(req.body)
+    const tfc = await Tfc.create(req.body)
 
     if (!tfc) throw new Error('no se ha creado ningun tfc')
 

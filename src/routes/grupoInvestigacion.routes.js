@@ -1,5 +1,5 @@
 import Express from 'express'
-import GrupoInvestigacionControllers from 'controllers/grupoinvestigacion.controller'
+import * as GrupoInvestigacionControllers from 'controllers/grupoinvestigacion.controller'
 
 const Router = Express.Router()
 
