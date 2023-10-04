@@ -1,6 +1,6 @@
 import { GrupoInvestigacion } from '../../db/models'
 
-export async function getGrupo(__, res) {
+export async function getGrupos(__, res) {
   const grupos = await GrupoInvestigacion.findAll()
 
   if (!grupos) return res.status(404).send('No hay grupos')

@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Tfc.hasOne(models.Alumno, { as: 'alumno' })
+      Tfc.belongsTo(models.Alumno, {
+        as: 'alumno',
+        foreignKey: {
+          name: 'alumno_id',
+          allowNull: true
+        }
+      })
     }
   }
   Tfc.init(

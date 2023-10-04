@@ -1,0 +1,39 @@
+### obtener alumnos
+GET http://localhost:3000/alumnos
+
+
+### Crear alumno
+POST http://localhost:3000/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "luis",
+    "apellido": "alvarado",
+    "carnet": "0900-20-7376",
+    "dpi": 123456789,
+    "fechaNacimiento": "2000-08-23",
+    "telefono": 12345678,
+    "direccion": "ciudad"
+}
+
+### Alumno por id
+
+GET http://localhost:3000/alumnos/1
+
+### actualizar alumno
+
+PUT http://localhost:3000/alumnos/1
+Content-Type: application/json
+
+{
+    "nombre": "luis",
+    "apellido": "celano",
+    "carnet": "0900-20-7376",
+    "dpi": 123456789,
+    "fechaNacimiento": "2000-08-23",
+    "telefono": 12345678,
+    "direccion": "ciudad"
+}
+
+### Eliminar alumno
+DELETE http://localhost:3000/alumnos/2

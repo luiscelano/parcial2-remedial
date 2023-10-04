@@ -1,0 +1,11 @@
+### Crear 
+POST  http://localhost:3000/tfcs
+Content-Type: application/json
+
+{
+    "tema": "Desarrollo web",
+    "fechaInicio": "2023-03-10"
+}
+
+### Asociar Alumno
+PATCH http://localhost:3000/tfcs/1/asociarAlumno/1

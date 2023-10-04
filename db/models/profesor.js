@@ -8,8 +8,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Profesor.hasMany(models.Alumno, { as: 'alumnos' })
-      Profesor.belongsToMany(models.Comite, { through: 'ComitesAsignados', as: 'comites' })
+      Profesor.hasMany(models.Alumno, {
+        as: 'alumnos',
+        foreignKey: {
+          name: 'profesor_id',
+          allowNull: true
+        }
+      })
+      Profesor.belongsToMany(models.Comite, { through: 'comites_asignados', as: 'comites' })
     }
   }
   Profesor.init(

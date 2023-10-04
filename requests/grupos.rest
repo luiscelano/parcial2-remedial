@@ -1,0 +1,11 @@
+### Obtener grupos
+GET http://localhost:3000/grupos
+
+
+### Crear grupo
+POST http://localhost:3000/grupos
+Content-Type: application/json
+
+{
+    "nombre": "grupo1"
+}

@@ -1,0 +1,25 @@
+### Obtener comites
+GET http://localhost:3000/comites
+
+### Crear comite
+POST http://localhost:3000/comites
+Content-Type: application/json
+
+{
+    "lugar": "guatemala",
+    "fechaFormacion": "2023-08-15"
+}
+
+### Obtener comite por no serie
+GET http://localhost:3000/comites/123456
+
+### Actualizar comite
+
+PUT http://localhost:3000/comites/123456
+Content-Type: application/json
+
+{
+    "noSerie": 1234567,
+    "lugar": "xela",
+    "fechaFormacion": "2023-08-15"
+}

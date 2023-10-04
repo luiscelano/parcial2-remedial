@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Comite.belongsToMany(models.Profesor, { as: 'profesores', through: 'ComitesAsignados' })
+      Comite.belongsToMany(models.Profesor, { as: 'profesores', through: 'comites_asignados' })
     }
   }
   Comite.init(
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'no_serie',
         unique: true,
         allowNull: false,
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       lugar: DataTypes.STRING,
       fechaFormacion: {

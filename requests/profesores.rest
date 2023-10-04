@@ -1,0 +1,23 @@
+### obtener profesores
+GET http://localhost:3000/profesores
+
+### Crear profesor
+POST http://localhost:3000/profesores
+Content-Type: application/json
+
+{
+    "nombre": "John",
+    "apellido": "Doe",
+    "carnet": "0900-20-0303",
+    "dpi": 3423034440101,
+    "fechaNacimiento": "1990-07-25",
+    "telefono": 45344430,
+    "direccion": "calzada san juan zona 7, guatemala",
+    "gradoAcademico": "licenciatura"
+}
+
+### Asignar Comite
+PATCH http://localhost:3000/profesores/1/asignarComite/1
+
+### Asociar Alumno
+PATCH http://localhost:3000/profesores/1/agregarAlumno/1

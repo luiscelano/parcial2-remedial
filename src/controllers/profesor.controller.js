@@ -1,12 +1,24 @@
-import { Profesor } from '../../db/models'
+import { Profesor, Comite, Alumno } from '../../db/models'
 
 //Lista completa
 export async function getProfesores(__, res) {
-  const profesores = await Profesor.findAll()
+  try {
+    const profesores = await Profesor.findAll({
+      include: [
+        {
+          model: Alumno,
+          as: 'alumnos'
+        }
+      ]
+    })
 
-  if (!profesores) return res.status(404).send('No hay profesores')
+    if (!profesores) return res.status(404).send('No hay profesores')
 
-  return res.status(200).json({ profesores })
+    return res.status(200).json({ profesores })
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send(error.message)
+  }
 }
 
 //Crear profesor
@@ -58,5 +70,51 @@ export async function deleteProfesor(req, res) {
     res.status(500).json({
       message: 'error eliminando al Profesor'
     })
+  }
+}
+
+export async function asignarComite(req, res) {
+  try {
+    const comite = await Comite.findByPk(req.params.idComite)
+    if (!comite)
+      return res.status(404).json({
+        message: 'Comite no encontrado'
+      })
+
+    const profesor = await Profesor.findByPk(req.params.idProfesor)
+    if (!profesor)
+      return res.status(404).json({
+        message: 'Profesor no encontrado'
+      })
+
+    await profesor.addComites([1])
+
+    return res.status(200).json({ message: 'Comite agregado correctamente' })
+  } catch (error) {
+    console.error('asignarComite error:', error)
+    res.status(500).send(error.message)
+  }
+}
+
+export async function agregarAlumno(req, res) {
+  try {
+    const profesor = await Profesor.findByPk(req.params.idProfesor)
+    if (!profesor)
+      return res.status(404).json({
+        message: 'Profesor no encontrado'
+      })
+    const alumno = await Alumno.findByPk(req.params.idAlumno)
+    if (!alumno)
+      return res.status(404).json({
+        message: 'Alumno no encontrado'
+      })
+    await profesor.addAlumno(alumno)
+
+    return res.status(200).json({
+      message: 'Alumno agregado correctamente'
+    })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send(error.toString())
   }
 }

@@ -8,15 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Alumno.belongsTo(models.Tfc, { foreignKey: { name: 'tfc_id', allowNull: false }, as: 'tfc' })
+      Alumno.hasOne(models.Tfc, {
+        as: 'tfc',
+        foreignKey: {
+          name: 'alumno_id',
+          allowNull: true
+        }
+      })
       Alumno.belongsTo(models.GrupoInvestigacion, {
-        foreignKey: { name: 'grupo_id', allowNull: false },
+        foreignKey: { name: 'no_grupo', allowNull: true, field: 'no_grupo' },
         as: 'grupoInvestigacion'
       })
       Alumno.belongsTo(models.Profesor, {
         foreignKey: {
           name: 'profesor_id',
-          allowNull: false
+          allowNull: true
         },
         as: 'profesores'
       })

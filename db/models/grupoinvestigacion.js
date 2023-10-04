@@ -8,28 +8,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      GrupoInvestigacion.hasMany(models.Alumno, { as: 'alumnos' })
+      GrupoInvestigacion.hasMany(models.Alumno, {
+        as: 'alumnos',
+        foreignKey: { name: 'no_grupo', allowNull: true }
+      })
     }
   }
   GrupoInvestigacion.init(
     {
-      grupoId: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
-        key: 'grupo_id'
-      },
       noGrupo: {
         type: DataTypes.INTEGER,
         key: 'no_grupo',
-        allowNull: false
+        allowNull: false,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
       },
-      nombre: DataTypes.STRING,
-      noAlumnos: {
-        type: DataTypes.INTEGER,
-        key: 'no_alumnos'
-      }
+      nombre: DataTypes.STRING
     },
     {
       sequelize,

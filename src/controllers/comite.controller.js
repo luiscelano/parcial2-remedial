@@ -1,8 +1,16 @@
-import { Comite } from '../../db/models'
+import generateSerialNumber from 'utils/generateSerialNumber'
+import { Comite, Profesor } from '../../db/models'
 
 //Lista completa
 export async function getComites(__, res) {
-  const comites = await Comite.findAll()
+  const comites = await Comite.findAll({
+    include: [
+      {
+        model: Profesor,
+        as: 'profesores'
+      }
+    ]
+  })
 
   if (!comites) return res.status(404).send('No hay comites')
 
@@ -12,7 +20,9 @@ export async function getComites(__, res) {
 //Crear comite
 export async function createComite(req, res) {
   try {
-    const comite = await Comite.create(req.body)
+    const body = { ...req.body }
+    Object.assign(body, { noSerie: generateSerialNumber() })
+    const comite = await Comite.create(body)
 
     if (!comite) throw new Error('no se ha creado ningun comite')
 

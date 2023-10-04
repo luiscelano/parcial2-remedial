@@ -5,7 +5,6 @@ package-lock.json
 *.gz
 .env.production
 .env.development
-*.rest
 # Coveralls
 .nyc_output
 coverage

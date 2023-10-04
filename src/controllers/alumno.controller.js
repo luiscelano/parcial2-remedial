@@ -1,8 +1,10 @@
-import { Alumno } from '../../db/models'
+import { Alumno, Tfc } from '../../db/models'
 
 //Lista completa
 export async function getAlumnos(__, res) {
-  const alumnos = await Alumno.findAll()
+  const alumnos = await Alumno.findAll({
+    include: [{ model: Tfc, as: 'tfc' }]
+  })
 
   if (!alumnos) return res.status(404).send('No hay alumnos')
 
